@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Phone, Mail, Facebook, MessageSquare, MapPin } from 'lucide-react';
+import { Phone, Mail, Facebook, MessageSquare, MapPin, Instagram, Video } from 'lucide-react';
 import { HOTEL_INFO } from '../constants';
 
 const Contact: React.FC = () => {
@@ -37,54 +37,62 @@ const Contact: React.FC = () => {
                 <p className="text-slate-600 text-lg">Reach out to us through any of our official channels.</p>
               </div>
 
-              <div className="space-y-8">
-                <a href={`tel:${HOTEL_INFO.contact.phone}`} className="flex items-center gap-6 group">
-                  <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <a href={`tel:${HOTEL_INFO.contact.phone}`} className="flex flex-col p-6 bg-slate-50 rounded-2xl group hover:bg-blue-600 transition-all">
+                  <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-white/20 group-hover:text-white">
                     <Phone className="w-6 h-6" />
                   </div>
-                  <div>
-                    <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Phone / WhatsApp</p>
-                    <p className="text-xl font-semibold text-slate-900">{HOTEL_INFO.contact.phone}</p>
-                  </div>
+                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest group-hover:text-blue-100">Phone</p>
+                  <p className="text-lg font-semibold text-slate-900 group-hover:text-white truncate">{HOTEL_INFO.contact.phone}</p>
                 </a>
 
-                <a href={`mailto:${HOTEL_INFO.contact.email}`} className="flex items-center gap-6 group">
-                  <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                <a href={`mailto:${HOTEL_INFO.contact.email}`} className="flex flex-col p-6 bg-slate-50 rounded-2xl group hover:bg-blue-600 transition-all">
+                  <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-white/20 group-hover:text-white">
                     <Mail className="w-6 h-6" />
                   </div>
-                  <div>
-                    <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Email Address</p>
-                    <p className="text-xl font-semibold text-slate-900">{HOTEL_INFO.contact.email}</p>
-                  </div>
+                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest group-hover:text-blue-100">Email</p>
+                  <p className="text-lg font-semibold text-slate-900 group-hover:text-white truncate">{HOTEL_INFO.contact.email}</p>
                 </a>
 
-                <a href={HOTEL_INFO.contact.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 group">
-                  <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                <a href={HOTEL_INFO.contact.facebook} target="_blank" rel="noopener noreferrer" className="flex flex-col p-6 bg-slate-50 rounded-2xl group hover:bg-blue-700 transition-all">
+                  <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-white/20 group-hover:text-white">
                     <Facebook className="w-6 h-6" />
                   </div>
-                  <div>
-                    <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Facebook</p>
-                    <p className="text-xl font-semibold text-slate-900">Kili Comfort Hotel</p>
-                  </div>
+                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest group-hover:text-blue-100">Facebook</p>
+                  <p className="text-lg font-semibold text-slate-900 group-hover:text-white">Kili Comfort</p>
                 </a>
 
-                <div className="flex items-center gap-6 group">
-                  <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center shrink-0">
+                <a href={HOTEL_INFO.contact.instagram} target="_blank" rel="noopener noreferrer" className="flex flex-col p-6 bg-slate-50 rounded-2xl group hover:bg-pink-600 transition-all">
+                  <div className="w-12 h-12 bg-pink-50 text-pink-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-white/20 group-hover:text-white">
+                    <Instagram className="w-6 h-6" />
+                  </div>
+                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest group-hover:text-pink-100">Instagram</p>
+                  <p className="text-lg font-semibold text-slate-900 group-hover:text-white">@kilicomfort.hotel</p>
+                </a>
+
+                <a href={HOTEL_INFO.contact.tiktok} target="_blank" rel="noopener noreferrer" className="flex flex-col p-6 bg-slate-50 rounded-2xl group hover:bg-slate-900 transition-all">
+                  <div className="w-12 h-12 bg-slate-100 text-slate-900 rounded-xl flex items-center justify-center mb-4 group-hover:bg-white/20 group-hover:text-white">
+                    <Video className="w-6 h-6" />
+                  </div>
+                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest group-hover:text-slate-400">TikTok</p>
+                  <p className="text-lg font-semibold text-slate-900 group-hover:text-white">@kilicomfort.hotel</p>
+                </a>
+
+                <div className="flex flex-col p-6 bg-slate-50 rounded-2xl">
+                  <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-4">
                     <MapPin className="w-6 h-6" />
                   </div>
-                  <div>
-                    <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Location</p>
-                    <p className="text-xl font-semibold text-slate-900">{HOTEL_INFO.location}</p>
-                  </div>
+                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Location</p>
+                  <p className="text-sm font-semibold text-slate-900">{HOTEL_INFO.location}</p>
                 </div>
               </div>
 
-              <div className="pt-8">
+              <div className="pt-4">
                 <a 
                   href={HOTEL_INFO.contact.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-green-500 text-white px-10 py-4 rounded-full font-bold hover:bg-green-600 transition-all shadow-lg"
+                  className="inline-flex items-center gap-2 bg-green-500 text-white px-10 py-4 rounded-full font-bold hover:bg-green-600 transition-all shadow-lg active:scale-95"
                 >
                   <MessageSquare className="w-5 h-5" /> Chat on WhatsApp
                 </a>

@@ -11,7 +11,9 @@ import {
   MapPin,
   Phone,
   Mail,
-  Facebook
+  Facebook,
+  Instagram,
+  Video
 } from 'lucide-react';
 import { Amenity, Attraction, NavItem } from './types';
 
@@ -23,7 +25,9 @@ export const HOTEL_INFO = {
     phone: "+254 745 557 057",
     whatsapp: "https://wa.me/254745557057",
     email: "kilicomforthotel@gmail.com",
-    facebook: "https://www.facebook.com/kilicomfort.hotel/",
+    facebook: "https://www.facebook.com/share/1D4rRajo43/",
+    instagram: "https://www.instagram.com/kilicomfort.hotel/",
+    tiktok: "https://www.tiktok.com/@kilicomfort.hotel",
     airbnb: "https://www.airbnb.com/rooms/782927001933959913"
   }
 };
@@ -81,5 +85,7 @@ export const ICON_MAP: Record<string, React.ReactNode> = {
   MapPin: <MapPin className="w-6 h-6" />,
   Phone: <Phone className="w-6 h-6" />,
   Mail: <Mail className="w-6 h-6" />,
-  Facebook: <Facebook className="w-6 h-6" />
+  Facebook: <Facebook className="w-6 h-6" />,
+  Instagram: <Instagram className="w-6 h-6" />,
+  TikTok: <Video className="w-6 h-6" />
 };

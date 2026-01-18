@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Mail, Phone, MapPin, Instagram, Twitter } from 'lucide-react';
+import { Facebook, Mail, Phone, MapPin, Instagram, Video } from 'lucide-react';
 import { HOTEL_INFO, NAV_ITEMS } from '../constants';
 
 const Footer: React.FC = () => {
@@ -16,14 +16,14 @@ const Footer: React.FC = () => {
               Your comfortable haven in Kilifi. Affordable, clean, and welcoming hospitality for every traveler.
             </p>
             <div className="flex space-x-4">
-              <a href={HOTEL_INFO.contact.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
+              <a href={HOTEL_INFO.contact.facebook} target="_blank" rel="noopener noreferrer" className="bg-slate-800 p-2 rounded-full hover:bg-blue-600 hover:text-white transition-all">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-blue-400 transition-colors">
+              <a href={HOTEL_INFO.contact.instagram} target="_blank" rel="noopener noreferrer" className="bg-slate-800 p-2 rounded-full hover:bg-pink-600 hover:text-white transition-all">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-blue-400 transition-colors">
-                <Twitter className="w-5 h-5" />
+              <a href={HOTEL_INFO.contact.tiktok} target="_blank" rel="noopener noreferrer" className="bg-slate-800 p-2 rounded-full hover:bg-slate-700 hover:text-white transition-all">
+                <Video className="w-5 h-5" />
               </a>
             </div>
           </div>
