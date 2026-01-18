@@ -1,49 +1,71 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Hotel } from 'lucide-react';
 import { HOTEL_INFO, NAV_ITEMS } from '../constants';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20">
+    <nav 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
-              <Hotel className="w-8 h-8 text-blue-600" />
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className={`p-2 rounded-xl transition-colors ${scrolled ? 'bg-blue-50' : 'bg-white/20'}`}>
+                <Hotel className={`w-6 h-6 ${scrolled ? 'text-blue-600' : 'text-white'}`} />
+              </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold text-slate-900 tracking-tight leading-none uppercase">Kili Comfort</span>
-                <span className="text-[10px] text-blue-600 font-medium uppercase tracking-widest mt-0.5">Hotel</span>
+                <span className={`text-lg font-extrabold tracking-tight leading-none uppercase ${scrolled ? 'text-slate-900' : 'text-white'}`}>
+                  Kili Comfort
+                </span>
+                <span className={`text-[10px] font-bold uppercase tracking-widest mt-0.5 ${scrolled ? 'text-blue-600' : 'text-blue-200'}`}>
+                  Hotel & Suites
+                </span>
               </div>
             </Link>
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-10">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-medium transition-colors ${
-                  isActive(item.path) ? 'text-blue-600' : 'text-slate-600 hover:text-blue-500'
+                className={`text-sm font-semibold tracking-wide transition-all relative py-2 ${
+                  isActive(item.path) 
+                    ? scrolled ? 'text-blue-600' : 'text-white'
+                    : scrolled ? 'text-slate-500 hover:text-slate-900' : 'text-white/70 hover:text-white'
                 }`}
               >
                 {item.label}
+                {isActive(item.path) && (
+                  <span className={`absolute bottom-0 left-0 w-full h-0.5 rounded-full transition-all ${scrolled ? 'bg-blue-600' : 'bg-white'}`}></span>
+                )}
               </Link>
             ))}
             <a
               href={HOTEL_INFO.contact.airbnb}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-blue-700 transition-all shadow-md active:scale-95"
+              className="bg-blue-600 text-white px-7 py-3 rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/20 active:scale-95"
             >
-              Book Now
+              Book Your Stay
             </a>
           </div>
 
@@ -51,7 +73,7 @@ const Navbar: React.FC = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-slate-600 hover:text-blue-600 focus:outline-none"
+              className={`p-2 rounded-lg transition-colors ${scrolled ? 'text-slate-600' : 'text-white'}`}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -61,32 +83,30 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Nav */}
       {isOpen && (
-        <div className="md:hidden bg-white border-b border-slate-100 animate-in slide-in-from-top duration-300">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <div className="md:hidden bg-white fixed inset-0 z-40 flex flex-col pt-24 px-8">
+          <div className="space-y-6">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setIsOpen(false)}
-                className={`block px-3 py-4 text-base font-medium border-l-4 transition-colors ${
-                  isActive(item.path)
-                    ? 'bg-blue-50 border-blue-600 text-blue-600'
-                    : 'border-transparent text-slate-600 hover:bg-slate-50 hover:text-blue-600'
+                className={`block text-3xl font-bold transition-colors ${
+                  isActive(item.path) ? 'text-blue-600' : 'text-slate-400 hover:text-slate-900'
                 }`}
               >
                 {item.label}
               </Link>
             ))}
-            <div className="pt-4 pb-4 px-3">
-              <a
-                href={HOTEL_INFO.contact.airbnb}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full text-center bg-blue-600 text-white px-6 py-3 rounded-xl text-lg font-bold shadow-lg"
-              >
-                Book Now
-              </a>
-            </div>
+          </div>
+          <div className="mt-auto pb-12">
+            <a
+              href={HOTEL_INFO.contact.airbnb}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-center bg-blue-600 text-white px-8 py-5 rounded-2xl text-lg font-bold shadow-xl"
+            >
+              Check Availability
+            </a>
           </div>
         </div>
       )}
